@@ -3,28 +3,35 @@
 <head th:replace="fragments :: head"></head>
 <body class="container">
 
-<h1>All Events</h1>
+    <h1>All Events</h1>
 
-<!--<nav th:replace="fragments :: navigation"></nav>-->
-<header th:replace="fragments :: header"></header>
+    <!--<nav th:replace="fragments :: navigation"></nav>-->
+    <header th:replace="fragments :: header"></header>
 
-<!--<p th:unless="${events} and ${events.size()}">No events!</p>-->
+    <!--<p th:unless="${events} and ${events.size()}">No events!</p>-->
 
-<!--<ul>-->
-<table class="table table-striped">
-    <thead>
+    <!--<ul>-->
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Event Name</th>
+                <th>Description</th>
+                <th>Address</th>
+            </tr>
+        </thead>
+        <th:block th:each="event : ${events}">
+    <!--        <tr th:each="event : ${events}">-->
+        <!--        <li th:text="${event}"></li>-->
+    <!--        <tr th:text="${event}"></tr>-->
+    <!--            <td th:text="${event}"></td>-->
         <tr>
-            <th>Name</th>
+            <td th:text="${event.getKey()}">Default Text</td>
+            <td th:text="${event.getValue()}">Default Text</td>
+            <td th:replace="fragments :: address"></td>
         </tr>
-    </thead>
-<!--    <th:block th:each="event : ${events}">-->
-    <tr th:each="event : ${events}">
-    <!--        <li th:text="${event}"></li>-->
-<!--        <tr th:text="${event}"></tr>-->
-        <td th:text="${event}"></td>
-    </tr>
-</table>
-<!--</ul>-->
+        </th:block>
+    </table>
+    <!--</ul>-->
 
 </body>
 </html>

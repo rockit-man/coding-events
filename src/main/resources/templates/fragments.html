@@ -10,13 +10,14 @@
 </head>
 <body>
 
-<nav th:fragment="header">
-    <h1 th:text="${title}">Coding Events</h1>
-    <ul class="nav">
-        <li class="nav-item"><a class="nav-link" href="/events">All Events</a></li>
-        <li class="nav-item"><a class="nav-link" href="/events/create">Create Event</a></li>
-    </ul>
-</nav>
+    <nav th:fragment="header">
+        <h1 th:text="${title}">Coding Events</h1>
+        <ul class="nav">
+            <li class="nav-item"><a class="nav-link" href="/events">All Events</a></li>
+            <li class="nav-item"><a class="nav-link" href="/events/create">Create Event</a></li>
+        </ul>
+    </nav>
 
+    <td th:fragment="address">1234 Candy Land Lane, Gum Drop City, 54321</td>
 </body>
 </html>
