@@ -4,7 +4,10 @@ import org.launchcode.codingevents.data.EventData;
 import org.launchcode.codingevents.models.Event;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("events")
@@ -19,14 +22,20 @@ public class EventController {
 
     // lives at /events/create
     @GetMapping("create")
-    public String renderCreateEventForm(Model model) {
-//        model.addAttribute("title", "Create Event");
+    public String displayCreateEventForm(Model model) {
+        model.addAttribute("title", "Create Event");
+        model.addAttribute(new Event());
         return "events/create";
     }
 
     // lives at /events/create
     @PostMapping("create")
-    public String createEventForm(@ModelAttribute Event newEvent) {
+    public String processCreateEventForm(@ModelAttribute @Valid Event newEvent, Errors errors, Model model) {
+
+        if (errors.hasErrors()) {
+            model.addAttribute("title", "Create Event");
+            return "events/create";
+        }
         EventData.addEvent(newEvent);
         return "redirect:";
     }
@@ -60,7 +69,6 @@ public class EventController {
     }
 
     @PostMapping("edit/{eventId}")
-//    @RequestMapping(value = "eventsedit", method = {RequestMethod.GET, RequestMethod.POST})
     public String processEditForm(int eventId, String name, String description) {
         Event selectedEvent = EventData.getById(eventId);
         selectedEvent.setName(name);

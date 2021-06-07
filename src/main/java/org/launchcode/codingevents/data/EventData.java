@@ -14,7 +14,7 @@ public class EventData {
     // get all events
     public static Collection<Event> getAll() { return events.values(); }
 
-    // get a single events
+    // get a single event
     public static Event getById(int id) { return events.get(id); }
 
     // add an event
